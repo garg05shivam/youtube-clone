@@ -8,9 +8,7 @@ function Layout({ children }) {
       <Navbar />
       <div className={styles.main}>
         <Sidebar />
-        <div className={styles.content}>
-          {children}
-        </div>
+        <div className={styles.content}>{children}</div>
       </div>
     </div>
   );

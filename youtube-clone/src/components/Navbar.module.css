@@ -1,8 +1,21 @@
 .navbar {
   height: 60px;
+  background-color: #181818;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 20px;
-  background-color: #111;
-  color: white;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+  color: red;
+  text-decoration: none;
+}
+
+input {
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: none;
 }
