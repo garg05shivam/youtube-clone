@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTrendingVideos } from "../data/youtube";
+import { getTrending } from "../data/youtube";
 import { Link } from "react-router-dom";
 import styles from "./page.module.css";
 
@@ -7,33 +7,18 @@ function Home() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    async function load() {
-      try {
-        const data = await getTrendingVideos();
-        setVideos(data);
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
-
-    load();
+    getTrending().then(setVideos);
   }, []);
 
   return (
     <div className={styles.grid}>
-      {videos.map((video) => (
-        <div key={video.id} className={styles.card}>
-          <Link to={`/watch/${video.id}`}>
-            <img
-              src={video.snippet.thumbnails.high.url}
-              className={styles.thumbnail}
-              alt=""
-            />
+      {videos.map((v) => (
+        <div key={v.id} className={styles.card}>
+          <Link to={`/watch/${v.id}`}>
+            <img src={v.snippet.thumbnails.high.url} />
           </Link>
-          <div className={styles.info}>
-            <h4>{video.snippet.title}</h4>
-            <p>{video.snippet.channelTitle}</p>
-          </div>
+          <h4>{v.snippet.title}</h4>
+          <p>{v.snippet.channelTitle}</p>
         </div>
       ))}
     </div>

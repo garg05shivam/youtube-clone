@@ -1,35 +1,25 @@
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
-function getApiKey() {
+function getKey() {
   return import.meta.env.VITE_YOUTUBE_API_KEY;
 }
 
 async function fetchData(endpoint, params) {
-  const key = getApiKey();
-
-  if (!key) {
-    throw new Error("API key missing in .env file");
-  }
-
-  const searchParams = new URLSearchParams({
+  const key = getKey();
+  const url = `${BASE_URL}${endpoint}?${new URLSearchParams({
     ...params,
     key,
-  });
-
-  const url = `${BASE_URL}${endpoint}?${searchParams.toString()}`;
+  })}`;
 
   const res = await fetch(url);
   const data = await res.json();
 
-  if (!res.ok) {
-    throw new Error(data?.error?.message || "YouTube API Error");
-  }
+  if (!res.ok) throw new Error(data.error.message);
 
   return data;
 }
 
-// 🔥 Trending Videos
-export async function getTrendingVideos() {
+export async function getTrending() {
   const data = await fetchData("/videos", {
     part: "snippet,statistics",
     chart: "mostPopular",
@@ -40,24 +30,13 @@ export async function getTrendingVideos() {
   return data.items;
 }
 
-// 🔍 Search Videos
 export async function searchVideos(query) {
   const data = await fetchData("/search", {
     part: "snippet",
-    type: "video",
     q: query,
-    maxResults: 20,
+    type: "video",
+    maxResults: 12,
   });
 
   return data.items;
-}
-
-// 🎬 Single Video
-export async function getVideoById(id) {
-  const data = await fetchData("/videos", {
-    part: "snippet,statistics",
-    id,
-  });
-
-  return data.items[0];
 }

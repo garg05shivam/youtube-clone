@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #0f0f0f;
   color: white;
 }
@@ -13,5 +13,6 @@
 
 .content {
   flex: 1;
-  padding: 20px;
+  padding: 20px 40px;
+  margin-left: 200px;   /* space for sidebar */
 }
