@@ -4,15 +4,16 @@
   min-height: 100vh;
   background-color: #0f0f0f;
   color: white;
+  width: 100vw;
 }
 
 .main {
   display: flex;
-  flex: 1;
+  width: 100%;
 }
 
 .content {
   flex: 1;
-  padding: 20px 40px;
-  margin-left: 200px;   /* space for sidebar */
+  padding: 20px;
+  width: 100%;
 }
