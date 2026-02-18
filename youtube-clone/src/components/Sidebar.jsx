@@ -1,13 +1,20 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
 function Sidebar() {
   return (
-    <div className={styles.sidebar}>
-      <Link to="/">Home</Link>
-      <Link to="/upload">Upload</Link>
-      <Link to="/profile">Profile</Link>
-    </div>
+    <aside className={styles.sidebar}>
+      <p className={styles.title}>Discover</p>
+      <NavLink to="/" className={({ isActive }) => (isActive ? styles.activeLink : "")}>
+        Home
+      </NavLink>
+      <NavLink to="/upload" className={({ isActive }) => (isActive ? styles.activeLink : "")}>
+        Upload
+      </NavLink>
+      <NavLink to="/profile" className={({ isActive }) => (isActive ? styles.activeLink : "")}>
+        Profile
+      </NavLink>
+    </aside>
   );
 }
 

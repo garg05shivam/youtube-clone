@@ -1,27 +1,158 @@
+.pageHeading {
+  margin-bottom: 14px;
+  font-size: 1.22rem;
+}
+
+.errorBanner {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 154, 132, 0.45);
+  background: rgba(255, 77, 48, 0.14);
+  color: #ffc4b8;
+}
+
+.emptyState {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  color: var(--muted);
+}
+
 .grid {
   display: grid;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .card {
   cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(25, 38, 61, 0.9), rgba(17, 26, 42, 0.95));
+  padding: 10px;
+  box-shadow: 0 10px 24px rgba(3, 8, 15, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  animation: cardReveal 0.45s ease both;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(3, 8, 15, 0.48);
+  border-color: rgba(255, 95, 59, 0.5);
 }
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: 170px;
   object-fit: cover;
   border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .card h4 {
-  font-size: 15px;
-  margin: 8px 0 4px;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
 }
 
 .card p {
-  font-size: 13px;
-  color: #aaa;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.metaRow {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: #c2d0e6;
+}
+
+.metaRow span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(17, 30, 49, 0.9);
+  border: 1px solid rgba(201, 219, 255, 0.14);
+}
+
+.skeletonCard {
+  cursor: default;
+  pointer-events: none;
+}
+
+.skeletonThumb {
+  height: 170px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 45, 70, 0.8) 25%,
+    rgba(47, 65, 95, 0.8) 37%,
+    rgba(30, 45, 70, 0.8) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+.skeletonLine {
+  height: 14px;
+  border-radius: 8px;
+  background: rgba(47, 65, 95, 0.8);
+  margin-bottom: 8px;
+}
+
+.shortLine {
+  width: 70%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+
+.pageButton {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 9px 15px;
+  color: var(--text);
+  background: var(--surface);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pageButton:hover {
+  transform: translateY(-1px);
+  background-color: var(--surface-hover);
+  border-color: rgba(255, 95, 59, 0.45);
+}
+
+.pageButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
